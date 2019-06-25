@@ -83,8 +83,11 @@ clean:
 	rm -f $(TARGET).elf
 	rm -f $(TARGET).bin
 
+openocd:
+	openocd -f C:\msys64\mingw64\share\openocd\scripts\board\stm32f469discovery.cfg
+
 debug:
-	arm-none-eabi-gdb main.elf -ex 'target extended-remote :3333' -ex 'load' -ex 'set disassemble-next-line on' -ex 'show disassemble-next-line' -ex 'frame'
+	C:\arm\bin\arm-none-eabi-gdb-py main.elf -ex 'target extended-remote :3333' -ex 'load' -ex 'set disassemble-next-line on' -ex 'show disassemble-next-line' -ex 'frame'
 	
 	
 	
