@@ -5,7 +5,7 @@ LD_SCRIPT = STM32F469I.ld
 MCU_SPEC  = cortex-m4
 
 # Toolchain definitions (ARM bare metal defaults)
-TOOLCHAIN = "C:/Program Files (x86)/GNU Tools ARM Embedded/8 2018-q4-major"
+TOOLCHAIN = "C:/arm-q4"
 CC = $(TOOLCHAIN)/bin/arm-none-eabi-gcc
 AS = $(TOOLCHAIN)/bin/arm-none-eabi-as
 LD = $(TOOLCHAIN)/bin/arm-none-eabi-ld
@@ -84,10 +84,11 @@ clean:
 	rm -f $(TARGET).bin
 
 openocd:
-	openocd -f C:\msys64\mingw64\share\openocd\scripts\board\stm32f469discovery.cfg
+	openocd -f C:/msys64/mingw64/share/openocd/scripts/board/stm32f469discovery.cfg
 
 debug:
-	C:\arm\bin\arm-none-eabi-gdb-py main.elf -ex 'target extended-remote :3333' -ex 'load' -ex 'set disassemble-next-line on' -ex 'show disassemble-next-line' -ex 'frame'
+	#C:/arm-q4/bin/arm-none-eabi-gdb --interpreter=mi2 main.elf -ex 'target extended-remote :3333' -ex 'load' -ex 'set disassemble-next-line on' -ex 'show disassemble-next-line' -ex 'frame'
+	C:/arm-q4/bin/arm-none-eabi-gdb --interpreter=mi2 main.elf -ex 'target extended-remote :3333' -ex 'load'
 	
 	
 	
